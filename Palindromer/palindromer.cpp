@@ -19,7 +19,7 @@ bool isPalindrome(string str, int lower, int upper)
     upper--;
     lower++;
 
-    if ((isPal == true) && (upper >= lower)) isPal = isPalindrome(str, lower, upper);
+    if (isPal && (upper >= lower)) isPal = isPalindrome(str, lower, upper);
     return(isPal);
 }
 
