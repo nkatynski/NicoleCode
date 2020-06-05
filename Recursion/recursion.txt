@@ -1,0 +1,3 @@
+A simple example of using recursion to solve a problem, written in both C++ and Python.
+
+This program can determine the degree of any factor of a positive integer. Points if you can modify the program to perform prime factorization.

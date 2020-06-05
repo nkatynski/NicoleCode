@@ -1,0 +1,3 @@
+This program determines whether or not a given string is a palindrome.
+
+The program takes in a string and compares the first and last letter (or upper and lower bound set by the user), determines whether or not they match, and iterates the lower bound up and the upper bound down until they overlap, cross, or a non-matching pair is discovered. This program also employs recursion.
