@@ -1,3 +1,3 @@
-# NicoleCode
+## NicoleCode
 
-# This is where I will dump code to force you to learn Git.
+This is a dumping ground for very small finished programs. This is also how example materials will be held hostage to force Git usage.
