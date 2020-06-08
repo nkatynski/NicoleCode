@@ -1,6 +1,3 @@
-//Nicole Katynski
-//M5 HW Palindromes
-
 #include <iostream>
 #include <string>
 #include <stdio.h>
