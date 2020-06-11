@@ -8,7 +8,7 @@ int charDetector(string sentence, char searchLetter)
   int letterInstances = 0;
 
   for(int i = 0; i < sentenceLength; i++){
-    if(char(sentence[i]) == searchLetter) letterInstances++;
+    if(tolower(char(sentence[i])) == tolower(searchLetter)) letterInstances++;
   }
 
   return letterInstances;
