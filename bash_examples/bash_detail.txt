@@ -1,0 +1,3 @@
+This is where we learn shell commands and how to use them. For the record, I'm doing this using Linux, not sure if it works perfectly on Windows 10 but who knows. If you're desperate, there's an app to make a Ubuntu VM available on the Windows store that I can guarantee will work.
+
+Anyways, here is where you learn how to really abuse your computer's autonomy by telling what to do with phenomenal precision.
