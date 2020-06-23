@@ -1,0 +1,5 @@
+This program is an exercise in creating and implementing a singly linked list. While it is considerably easier to do this using the Standard Template Library, treating the methods involved like a black box, the point is introducing you to the mechanics of a linked list.
+
+Linked lists are an abstract data type composed of nodes. Think of nodes like links in a chain, each connected to the other save for the ends. A node in a singly linked list contains exactly two things: the data stored in the node and a pointer variable of the node type containing the address of the next node in the list. This pointer variable allows you to navigate the list by following the chain of addresses from node to node. A doubly linked list will contain two of these pointers, allowing for navigation both up and down the chain.
+
+This program requires the creation of a LinkedList class equipped with a default (no argument) constructor, a method of void type for adding elements of type double to the linked list, and a method of boolean type for checking whether argument "x" of type double is an element in the list.
