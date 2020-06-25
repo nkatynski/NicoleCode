@@ -4,7 +4,6 @@
 
 using namespace std;
 
-
 struct node{
     double val;
     node *next = NULL;  // pointer to the next node
