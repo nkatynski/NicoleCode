@@ -5,9 +5,6 @@
 
 using namespace std;
 
-//prototype recursive fn
-bool isPalindrome(string, int, int);
-
 bool isPalindrome(string str, int lower, int upper)
 {
     bool isPal = true;
