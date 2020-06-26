@@ -1,0 +1,9 @@
+This program is an exercise in setting up a data structure, particularly a binary search tree.
+
+Binary search trees are similar to Linked Lists in that they are composed of nodes containing data and pointers to other nodes. However, BSTs are unique in that the contents can be ordered and searched. Each node contains pointers to two child nodes, one dubbed "left" and one dubbed "right", along with at least one piece of data for use as a key.
+
+A key is a piece of identifying information used to index a data structure. Every element in a data structure must have a key and every key must be unique. In a binary search tree, if a node has child nodes, the left node will always have a lower key value than that of its parent node and the right node will always have a greater key value than that of its parent node. In this way, all elements are sorted inside the tree by value, if not expressly efficiently (ex. suppose you entered a string of keys that steadily decreased; each new node would be the left child of the node prior, turning the tree into a straight line, requiring you to traverse every node to locate the one with the smallest key value). This can be mitigated by the use of splay trees or balanced BSTs which change their structure following some insertions, deletions, or searches, but that's for another example.
+
+In this program, our binary search tree only requires the methods to add to and search through the tree. The root (top) node will wind up being whichever one is inserted first, the others compared to it and stored as its children or its children's children or so forth. The program needs to be able to successfully locate the correct spot for the new node and successfully insert the node into the tree at that spot.
+
+In addition, the user must be able to conduct a search for a given ID#. If the ID# matches the key of a node in the structure, return the name of the affiliated employee.
