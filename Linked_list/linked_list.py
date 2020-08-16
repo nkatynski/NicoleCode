@@ -6,6 +6,9 @@ class Node:
         self.val = value
         self.next = None
 
+    def display(self):
+        print(self.val)
+
 
 class LinkedList:
     def __init__(self):
@@ -32,16 +35,22 @@ class LinkedList:
     def is_member(self, value, current_node=None):
         # handles initial method call where no node is passed
         if current_node is None:
-            membership = self.is_member(value, self.head)
-        elif current_node.val == value:
+            current_node = self.head
+        if current_node.val == value:
             membership = True
         elif (current_node.val == value) is False and current_node.next is None:
             membership = False
         # recur if value is not a match and the end has not been reached
         else:
-            print("Recur!")
             membership = self.is_member(value, current_node.next)
         return membership
+
+    def display(self, current_node=None):
+        if current_node is None:
+            current_node = self.head
+        current_node.display()
+        if current_node.next is not None:
+            self.display(current_node.next)
 
 
 my_list = LinkedList()
@@ -50,5 +59,4 @@ values = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 for item in values:
     my_list.add(item)
 
-result = my_list.is_member(1)
-print(result)
+my_list.display()
