@@ -88,7 +88,8 @@ class BinaryTree:
 
 
 emp_nums = [1021, 1057, 2487, 3769, 1017, 1275, 1899, 4218]
-emp_names = ["John Williams", "Bill Witherspoon", "Jennifer Twain", "Sophia Lancaster", "Debbie Reece", "George McMullen", "Ashley Smith", "Josh Plemmons"]
+emp_names = ["John Williams", "Bill Witherspoon", "Jennifer Twain", "Sophia Lancaster",
+             "Debbie Reece", "George McMullen", "Ashley Smith", "Josh Plemmons"]
 my_tree = BinaryTree()
 
 for i in range(len(emp_nums)):
