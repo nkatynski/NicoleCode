@@ -45,6 +45,38 @@ class LinkedList:
             membership = self.is_member(value, current_node.next)
         return membership
 
+    # recursive node deletion function, only deletes first instance
+    def delete(self, value, current_node=None):
+        # check if this is first function call
+        if current_node is None:
+            current_node = self.head
+            # check if head node matches search value
+            if self.head.val == value:
+                # reassign next node to head if one exists
+                if self.head.next is not None:
+                    self.head = current_node.next
+                # nullify the head otherwise
+                else:
+                    self.head = None
+            # if head does not match search value, recur with next node
+            else:
+                self.delete(value, current_node.next)
+        # if this is not the first function call and not the last link in the chain
+        elif current_node.next is not None:
+            # if the next node is a match
+            if current_node.next.val == value:
+                # if the next node has a following node of its own
+                if current_node.next.next is not None:
+                    # reassign current_node.next to the following node of its original following node
+                    current_node.next = current_node.next.next
+                # if the next node is the end of the chain
+                else:
+                    # nullify the current node's .next field
+                    current_node.next = None
+            # if the next node is not a match, recur with the next node
+            else:
+                self.delete(value, current_node.next)
+
     def display(self, current_node=None):
         if current_node is None:
             current_node = self.head
@@ -59,4 +91,7 @@ values = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 for item in values:
     my_list.add(item)
 
+my_list.display()
+my_list.delete(4)
+my_list.delete(1)
 my_list.display()
