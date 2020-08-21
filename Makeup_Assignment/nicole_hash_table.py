@@ -1,8 +1,8 @@
 # The purpose of this program is to set up a simple hash-map capable of simple storage and retrieval of words or phrases
 
 class HashMap:
-    map = []        # the map itself will be a list of lists
-    buckets = 100   # specifies the number of buckets in the table when initialized
+    map = []  # the map itself will be a list of lists
+    buckets = 100  # specifies the number of buckets in the table when initialized
 
     # initializes hash-map as a list of empty lists in the quantity specified by self.buckets
     def __init__(self):
@@ -14,8 +14,10 @@ class HashMap:
         hash_code = 0
         # the hash code used for this map is the sum of the uppercase ascii values of all characters in the string,
         # compressed into bucket quantity as in self.buckets - collisions will likely be common
-        # hash code calculat
-        return hash_code
+        # hash code calculate
+        for char in term.upper():
+            hash_code += ord(char)
+        return hash_code % self.buckets
 
     # private - conducts a search for a term in the hash-map, return binary True or False depending on if value is found
     def _search_(self, term):
@@ -32,6 +34,9 @@ class HashMap:
 
     # removes a term from its bucket if present
     def remove(self, term):
+        # del band_List(term)
+        # return band_List
+
         # does nothing if term is not an entry
         pass
 
@@ -40,6 +45,7 @@ class HashMap:
         pass
 
 
+# MAIN
 # band names will be the stored entries in the map as they require the utmost speed in searches
 band_list = ["Wilco", "King Gizzard and the Lizard Wizard", "Death From Above 1979", "Ween", "Queens of the Stone Age",
              "The White Stripes", "Jack White", "The Raconteurs", "The Dead Weather", "The Hentchmen", "Royal Blood",
