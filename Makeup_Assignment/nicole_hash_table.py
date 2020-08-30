@@ -21,29 +21,34 @@ class HashMap:
 
     # private - conducts a search for a term in the hash-map, return binary True or False depending on if value is found
     def _search_(self, term):
-        pass
+        return term in self.map[self._hash_(term)]
 
     # public - conducts a search using _search_ and outputs a corresponding user message for a given search term
     def find(self, term):
-        pass
+        if self._search_(term):
+            print(term + " is a member")
+        else:
+            print(term + " is not a member")
 
     # inserts a term into the appropriate bucket if term is not found in a search to prevent redundant entries
     def insert(self, term):
-        # does nothing if term is already an entry
-        pass
+        if not self._search_(term):
+            # then insert
+            self.map[self._hash_(term)].insert(0, term.upper())
 
     # removes a term from its bucket if present
     def remove(self, term):
-        # del band_List(term)
-        # return band_List
-
-        # does nothing if term is not an entry
-        pass
+        if self._search_(term):
+            # then remove
+            self.map[self._hash_(term)].remove(term).upper()
 
     # prints all contents of all buckets to terminal
     def display(self):
-        pass
-
+        for i in range(self.buckets):
+            print(str(i), end = ": ")
+            for j in range(len(self.map[i])):
+                print(self.map[i][j], end = ", ")
+            print(" ")
 
 # MAIN
 # band names will be the stored entries in the map as they require the utmost speed in searches
@@ -61,8 +66,7 @@ bands = HashMap()
 
 # populate bands HashMap from band list
 for i in range(len(band_list)):
-    pass
     # uncomment the line below and delete the line above once your insertion function is finished
-    # bands.insert(band_list[i])
+    bands.insert(band_list[i])
 
 bands.display()
