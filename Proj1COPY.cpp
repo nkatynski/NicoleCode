@@ -8,414 +8,562 @@
 
 using namespace std;
 
+enum Type { Shopping, Dishes, Homework, Cooking, Laundry, PetCare };
+enum Status { Done, InProgress, OnHold, NotStarted };
+
+//temporarily set max size to 10 for testing
+const int MAX_SIZE = 10;
+
+
 //2 global functions
 //copy to 2d array
 //each row represents item type
-void copy2D()
+void copy2D()//string title, string type)
 {
-
+	//this is how I put stuff in a 2d array but how do i copy it?
+	//pass in 1d array i made earlier and add type to it?
+	string toDoTitleType[MAX_SIZE][MAX_SIZE];
+	for (int i = 0; i < MAX_SIZE; i++)
+	{
+		for (int j = 0; j < MAX_SIZE; j++)
+		{
+			cin >> toDoTitleType[i][j];
+		}
+	}
 }
 
 //copy to 3d array
 //2nd dim = type
 //3rd dim = priority
-void copy3D()
-{
 
+void copy3D()//string title, string type, int priority)
+{
+	//this is how i put stuff in a 3d array but how would I copy it????
+	//pass in 1d array and add 3rd dimension to it?
+	string toDoTitleTypePriority[MAX_SIZE][MAX_SIZE][MAX_SIZE];
+
+	for (int i = 0; i < MAX_SIZE; i++)
+	{
+		for (int j = 0; j < MAX_SIZE; j++)
+		{
+			for (int k = 0; k < MAX_SIZE; k++)
+			{
+				cin >> toDoTitleTypePriority[i][j][k];
+			}
+		}
+	}
 }
 
 class ToDoItem
-{
+{ 
+private:
+	int ID;
+	string title;
+	string description;
+	int status;
+	int priority;
+	Type itemType;
+	Status itemStatus;
+	string todaysDate;
+	string dueDate;
+	string modDate;
+	//create date struct
+public:
+	struct date
+	{
+		int day;
+		int month;
+		int year;
+	};
+
+	//default constructor
+	ToDoItem()
+	{
+	}
+
+	//constructor to initialize title, desc, type
+	ToDoItem(string title, string description, Type userType)
+	{
+		title = title;
+		description = description;
+		userType = userType;
+		//status = status.NotStarted;
+
+		
+	}
+
+	//constructor to initialize title, type, priority
+	ToDoItem(string title, Type userType, int priority)
+	{
+		title = title;
+		userType = userType;
+		priority = priority;
+
+
+	}
+
+	//constructor to initialize title, type, priority, due date
+	ToDoItem(string title, Type userType, int priority, string date)
+	{
+		title = title;
+		userType = userType;
+		priority = priority;
+		//this.date = date;
+	}
+
+
 	//where all user values will go
 	//set and get functions
 public:
-	int getID()
+	void setID(int newID)
 	{
-		int ID;
-		//idk what to put for max num?????
-		int MAX_ID = 9999999999;
+		ID = newID;
+	}
 
-		for (int i = 0; i < 9999999999; i++)
-		{
-			//generate id
-			ID = i;
-		}
+	void setTitle(string newtitle)
+	{
+		title = newtitle;
+	}
+
+	void setType(Type newType)
+	{
+		itemType = newType;
+	}
+
+	void setDescription(string description)
+	{
+		description = description;
+	}
+
+	void setStatus(Status newStatus)
+	{
+		itemStatus = newStatus;
+	}
+
+	void setPriority(int newPriority)
+	{
+		priority = newPriority;
+	}
+
+	void setDueDate(string newDueDate)
+	{
+		dueDate = newDueDate;
+	}
+
+	void setTodaysDate(string newTodaysDate)
+	{
+		todaysDate = newTodaysDate;
+	}
+
+	void setModDate(string newModDate)
+	{
+		modDate = newModDate;
+	}
+
+	int getItemID()
+	{
 		return ID;
 	}
 
-	void setTitle()
+	string getTitle()
 	{
-		string title;
-		cout << "Enter task title (ex. Grocery Shopping)" << endl;
-		cin >> title;
+		return title;
 	}
 
-	void setType()
+	int getType()
 	{
-		enum Type { Shopping, Dishes, Homework, Cooking, Laundry, PetCare };
-		cout << "Enter task type" << endl;
-		string userType;
-		//make an array to handle user input
-		string types[6] = { "Shopping", "Dishes", "Homework", "Cooking", "Laundry", "Pet Care" };
-		cin >> userType;
-
-		if (userType == "Shopping" || userType == "shopping")
-		{
-			//Type = Shopping;??
-			//how do i cin an enum?????
-		}
-
-		else if (userType == "Dishes" || userType == "dishes")
-		{
-			//Type = Dishes;
-		}
-
-		else if (userType == "Homework" || userType == "homework")
-		{
-			//Type = Homework;
-		}
-
-		else if (userType == "Cooking" || userType == "cooking")
-		{
-			//Type = Cooking;
-		}
-
-		else if (userType == "Laundry" || userType == "laundry")
-		{
-			//Type = Laundry;
-		}
-
-		else if (userType == "Pet Care" || userType == "Pet care" || userType == "pet care")
-		{
-			//Type = PetCare;
-		}
-
-		else
-		{
-			cout << "Please enter a valid job type" << endl;
-			cin >> userType;
-		}
+		return itemType;
 	}
 
-	void setDescription()
+	string getDescription()
 	{
-		//default description
-		string description = "The user has left no description for this item";
-
-		//have user add a description
-		cout << "Add a job description" << endl;
-		string taskDescrip;
-		cin >> taskDescrip;
+		return description;
 	}
 
-	void setStatus()
+	int getStatus()
 	{
-		enum Status { Done, InProgress, OnHold, NotStarted };
-		cout << "Enter task status: (Done, In Progress, On Hold, or Not Started)" << endl;
-		cin >> status;
-
-		//handle user input
-		if (status == "Done" || status == "done")
-		{
-			//Status = Done;
-		}
-
-		else if (status == "In Progress" || status == "In progress" || status == "in progress")
-		{
-			//Status = InProgress;
-		}
-
-		else if (status == "On Hold" || status == "On hold" || status == "on hold")
-		{
-			//Status = OnHold;
-		}
-
-		else if (status == "Not Started" || status == "Not started" || status == "not started")
-		{
-			//Status = NotStarted;
-		}
-
-		else
-		{
-			//invalid input
-			cout << "Please enter one of the listed statuses" << endl;
-			cin >> status;
-		}
-
+		return status;
 	}
 
-	void setPriority()
+	int getPriority()
 	{
-		int priority[5] = { 1,2,3,4,5 };
-		cout << "Rate the task priority (1 = Highest Priority, 5 = Lowest Priority" << endl;
-		int userPriority;
-		cin >> userPriority;
-		
-		if (userPriority == 1)
-		{
-			cout << "You selected: 1 - Top Priority" << endl;
-		}
-
-		else if (userPriority == 2)
-		{
-			cout << "You selected: 2 - High Priority" << endl;
-		}
-
-		else if (userPriority == 3)
-		{
-			cout << "You selected: 3 - Medium Priority" << endl;
-		}
-
-		else if (userPriority == 4)
-		{
-			cout << "You selected: 4 - Low Priority" << endl;
-		}
-
-		else if (userPriority == 5)
-		{
-			cout << "You selected: 5 - Lowest Priority" << endl;
-		}
-
-		else
-		{
-			cout << "ERROR - INVALID INPUT" << endl;
-			cout << "Try again" << endl;
-			cin >> userPriority;
-		}
+		return priority;
 	}
 
-	//create date struct
-	struct createDate
+	string getDueDate()
 	{
-		int createDay;
-		int createMonth;
-		int createYear;
-	}; 
-
-	//due date struct
-	struct dueDate
-	{
-		int dueDay;
-		int dueMonth;
-		int dueYear;
-	};
-	//last modified date struct
-	struct lastModDate
-	{
-		int modDay;
-		int modMonth;
-		int modYear;
-	};
-
-	void setDueDate()
-	{
-		//using struct dueDate
-		cout << "Enter task due date" << endl;
-		//cin >> dueDate::dueMonth;
-		//cin >> dueDate::dueDay;
-		//cin >> dueDate::dueYear;
-		//format
-		//cout << "Due date =" << dueMonth << "/" << dueDay<< "/", dueYear << endl;
+		return dueDate;
 	}
 
-	void setTodayDate()
+	string getTodaysDate()
 	{
-		//using struct createDate
-		cout << "Enter today's date (mm/dd/yyyy)" << endl;
-		//cin >> createDate::createMonth;
-		//cin >> createDate::createDay
-		//cin >> createDate::createYear;
-
-		//***calculate how many days you have to finish
-		//given due date and create date
-		//int daysLeft;
-		//daysLeft = dueDay - createDay;
+		return todaysDate;
 	}
 
-	void getUserInfo()
+	string getModDate()
 	{
-
+		return modDate;
 	}
 };
 
 class ToDoList
-{	//default public for now
+{
+	//array of objects
+	//showing titles entered by user
+
+	ToDoItem myList[MAX_SIZE];
+	//loop in information put in AddToDo
+
+	//initialize empty to do list
 public:
-	//generated by prog - in order - when created
+	ToDoList()
+	{
+		
+	}
+
+	//copy constructor
+	ToDoList(string title)
+	{
+
+	}
+
+private:
+	
 	int ID;
 	string title;
 
 	//default description
 	string description = "The user has left no description for this item";
-	enum Type { Shopping, Dishes, Homework, Cooking, Laundry, PetCare };
-	int priority[5] = { 1,2,3,4,5 };
-	enum Status { Done, InProgress, OnHold, NotStarted };
-	//date struct
-	struct createDate
-	{
-		int createDay;
-		int createMonth;
-		int createYear;
+	int priority;
+	int status;
+	string dueDate;
+	string todaysDate;
+	string modDate;
+	string temp;
+	int userType;
 
-	};
-	//due date struct
-	struct dueDate
-	{
-		int dueDay;
-		int dueMonth;
-		int dueYear;
-	};
-	//last modified date struct
-	struct lastModDate
-	{
-		int modDay;
-		int modMonth;
-		int modYear;
-	};
-	//default private mem functions
-private:
-	//define each
+public:
 
-	//need constructor
-	//need copy constructor
 	void addToDo()
-	{
-		//handle job status
-		//remember
-		//enum Status { Done, InProgress, OnHold, NotStarted };
-		string taskStatus[4] = { "Done", "InProgress", "OnHold", "NotStarted" };
-		string status;
-	
-		//create ID
-		int ID;
-		
-		//showing user input before adding to list
-		cout << "The following has been added to the To Do list" << endl;
-		cout << "ID: " << ID << endl;
-		//cout << "Task Type: " << Type << endl;
-		cout << "Task Title: " << title << endl;
+	{//taking in user input 
+		/*
+		ToDoItem setTitle();
+		cout << "Enter task title (ex. Grocery Shopping)" << endl;
 
-		//write code for task priority
-		cout << "Task Priority: " << priority << endl;
-		cout << "Task Status: " << status << endl;
-		//fix due date code ----cout << "Due Date: " << dueDate << endl;
-		//fix todays date code ---- cout << "Todays Date: " << createDate << endl;
-		//cout << "You have " << daysLeft << " days to finish this task" << endl;
+		for (int i = 0; i < MAX_SIZE; i++)
+		{
+			cin >> temp;
+			myList[i].setTitle(temp);
+		}
+		*/
+
+		editTitle();
+		editDescription();
+
+		//WITHIN EACH ITEM CALL SET/GET FNS???????
+		//make int return type fn to return index of an ID
+		//user enters task type 
+
+		ToDoItem setType();
+		cout << "Enter the number corresponsding to your task type: " << endl;
+		cout << "(1 - Shopping, 2 - Dishes, 3 - Homework, 4 - Cooking, 5 - Laundry, 6 - Pet Care" << endl;
+		int userType;
+		//make an array to handle user input
+		cin >> userType;
+		switch(userType)
+		{
+
+		case 1:
+			myList[ID].setType(Shopping);
 		
+
+		case 2:
+			myList[ID].setType(Dishes);
+	
+		case 3:
+			myList[ID].setType(Homework);
+		
+		case 4:
+			myList[ID].setType(Cooking);
+
+		case 5:
+			myList[ID].setType(Laundry);
+
+		case 6:
+			myList[ID].setType(PetCare);
+		
+		//else
+		default:
+		
+			cout << "Please enter a valid job type" << endl;
+			cin >> userType; 
+		
+		}
+
+		//user enters description
+
+		//default description
+		//ToDoItem setDescription();
+		//string description = "The user has left no description for this item";
+
+		//have user add a description
+		//cout << "Add a job description" << endl;
+		//string taskDescrip;
+		//cin >> taskDescrip;
+
+		//user enters status
+		
+
+		//user enters priority
+		ToDoItem setPriority();
+		cout << "Rate the task priority (1 = Highest Priority, 5 = Lowest Priority" << endl;
+		cin >> priority;
+
+		switch (priority) {
+
+			case 1:
+				cout << "You selected: 1 - Top Priority" << endl;
+				myList[ID].setPriority(1);
+			
+			case 2:
+				cout << "You selected: 2 - High Priority" << endl;
+				myList[ID].setPriority(2);
+			
+			case 3:
+				cout << "You selected: 3 - Medium Priority" << endl;
+				myList[ID].setPriority(3);
+		
+			case 4:
+				cout << "You selected: 4 - Low Priority" << endl;
+				myList[ID].setPriority(4);
+		
+			case 5:
+				cout << "You selected: 5 - Lowest Priority" << endl;
+				myList[ID].setPriority(5);
+
+			//else
+			default:
+				cout << "ERROR - INVALID INPUT" << endl;
+				cout << "Try again" << endl;
+				cin >> priority;
+			
+		}
+		//user enters due date
+		//using struct dueDate
+		ToDoItem setDueDate();
+		cout << "Enter task due date (mm/dd/yyyy)" << endl;
+		cin >> dueDate;
+
+		//user enters todays date
+		//using struct createDate
+		ToDoItem setTodaysDate();
+		cout << "Enter today's date (mm/dd/yyyy)" << endl;
+		cin >> todaysDate;
 	}
 
 	void editToDo()
 	{
-		string attribute;
+		int attribute;
 		cout << "Which attribute do you want to edit?" << endl;
+		cout << "Pick a number: (1 - Title, 2 - Description, 3 - Status)" << endl;
 		cin >> attribute;
 		//figure out which attribute
 		//switch or if statement for task title,description, status
-		//use if for now
-		if (attribute == "Title" || attribute == "title")
-		{
-			cout << "Enter your title changes" << endl;
-			cin >> title;
-			cout << "New title: " << title << " ." << endl;
+
+		switch (attribute) {
+
+		case 1:
+			//user chose title
+			editTitle();
+
+
+		case 2:
+			//user chose descrip
+			editDescription();
+
+		case 3:
+			//user chose status
+			editStatus();
 		}
 
-		else if (attribute == "Description" || attribute == "description")
-		{
-			cout << "Enter your description changes" << endl;
-			cin >> description;
-		}
-
-		else if (attribute == "Status" || attribute == "status")
-		{
-			cout << "Enter the new status" << endl;
-			//cin >> status
-		}
-
-		//declare mod date (ask for todays date)
+		//user made modifications so set mod date
+		ToDoItem setModDate();
 		cout << "Enter today's date - (mm/dd/yyyy)" << endl;
-		//cin >> lastModDate::modDay;
-		//cin >> lastModDate::modMonth;
-		//cin >> lastModDate::modYear;
-		//test modDate
-		//cout << modMonth << "/" << modDay << "/" << modYear << endl;
+		cin >> modDate;
 	}
+	string editTitle()
+	{
+		ToDoItem setTitle();
+		cout << "Enter task title (ex. Grocery Shopping)" << endl;
+
+		for (int i = 0; i < MAX_SIZE; i++)
+		{
+			cin >> temp;
+			myList[i].setTitle(temp);
+		}
+		/*
+		cout << "Enter your title changes" << endl;
+		cin >> title;
+		cout << "New title: " << title << " ." << endl;
+		return title;
+		*/
+	}
+
+	string editDescription()
+	{
+		ToDoItem setDescription();
+		cout << "Enter your description changes" << endl;
+		cin >> description;
+		return description;
+	}
+
+	int editStatus()
+	{	/*
+		ToDoItem setStatus();
+		cout << "Enter the new status" << endl;
+		cin >> status;
+		return status;
+		*/
+
+		ToDoItem setStatus();
+		cout << "Enter the number corresponding to your task status: " << endl;
+		cout << "(1 - Done, 2 - In Progress, 3 - On Hold, or 4 - Not Started)" << endl;
+		cin >> status;
+
+		//handle user input
+		switch (status){
+		case 1:
+			myList[ID].setStatus(Done);
+
+		case 2:
+			myList[ID].setStatus(InProgress);
+		
+		case 3:
+			myList[ID].setStatus(OnHold);
+		
+		case 4:
+		//Status = NotStarted;
+			myList[ID].setStatus(NotStarted);
+		
+		}
+		if (status < 1 || status > 4)
+		{
+		//invalid input
+		cout << "Please enter one of the listed statuses" << endl;
+		cin >> status;
+		}
+	
+	}
+
 	void deleteToDo()
 	{
-		//ask for ID of num to be deleted
-		cout << "Enter the ID of the item you want to delete" << endl;
-		cin >> ID;
+		cout << "Choose a delete option: (1 - By ID, 2- By Task Type, 3 - By Task Status)" << endl;
+		int userDeletePick;
+		cin >> userDeletePick;
 
-		cout << "Deleting " << ID << " " << endl;//some attribute 
-		//delete ID;
+		if (userDeletePick == 1)
+		{
+			//delete by ID
+			//ask for ID of num to be deleted
+			cout << "Enter the ID of the item you want to delete" << endl;
+			cin >> ID;
+
+			cout << "Deleting " << ID << " " << title << endl;
+			//delete ID;
+			ID = 0;
+		}
+
+		else if (userDeletePick == 2)
+		{
+			//delete by type
+			//multiples
+
+			int deleteType = 1;
+			cout << "Enter the type of task you want to delete: (1 - Shopping, 2 - Dishes, 3 - Homework, 4 - Cooking, 5 - Laundry, 6 - Pet Care" << endl;
+			//cin which type and delete
+			cin >> deleteType;
+			//make a bool item for visible in listitem
+			//check input
+			switch(deleteType){
+
+			case 1:
+			{
+				//delete shopping
+			}
+
+			case 2:
+			{
+				//delete dishes
+			}
+
+			case 3:
+			{
+				//delete homework
+			}
+
+			case 4:
+			{
+				//delete Cooking;
+			}
+
+			case 5:
+			{
+				//delete laundry;
+			}
+
+			case 6:
+			{
+				//delete petCare;
+			}
+		}
+		}
+
+		else if (userDeletePick == 3)
+		{
+			//delete by status
+
+			int deleteStatus;
+			cout << "Enter the number of the status you want to delete: (1 - Done, 2 - In Progress, 3 - On Hold, 4 - Not Started)" << endl;
+			cin >> deleteStatus;
+
+			switch(deleteStatus){
+			//check input
+			case 1:
+			{
+				//delete[] Done;
+				//myList[ID].setStatus()
+			}
+
+			case 2:
+			{
+				//delete[] InProgress
+			}
+
+			case 3:
+			{
+				//delete[] OnHold;
+			}
+
+			case 4:
+			{
+				//delete[] NotStarted;
+			}
+
+		}
+		}
+
+		else
+		{
+			//invalid input
+			cout << "ERROR - Invalid input, Try again" << endl;
+			cin >> userDeletePick;
+		}
 	}
-	void deleteByType()
-	{
-		string deleteType;
-		cout << "Which type do you want to delete? (Shopping, Dishes, Homework, Cooking, Laundry, Pet Care"<< endl;
-		//cin which type and delete
-		cin >> deleteType;
 
-		//check input
-		if (deleteType == "Shopping" || deleteType == "shopping")
-		{
-			//delete[] Shopping;
-		}
-
-		else if (deleteType == "Dishes" || deleteType == "dishes")
-		{
-			//delete[] Dishes;
-		}
-
-		else if (deleteType == "Homework" || deleteType == "homework")
-		{
-			//delete[] Homework;
-		}
-
-		else if (deleteType == "Cooking" || deleteType == "cooking")
-		{
-			//delete[] Cooking;
-		}
-
-		else if (deleteType == "Laundry" || deleteType == "laundry")
-		{
-			//delete[] Laundry;
-		}
-
-		else if (deleteType == "Pet Care" || deleteType == "Pet care" || deleteType == "pet care")
-		{
-			//delete[] PetCare;
-		}
-	}
-	void deleteByStatus()
-	{
-		string deleteStatus;
-		cout << "Which status do you want to delete? (Done, In Progress, On Hold, or Not Started)" << endl;
-		cin >> deleteStatus;
-
-		//check input
-		if (deleteStatus == "Done" || deleteStatus == "done")
-		{
-			//delete[] Done;
-		}
-
-		else if (deleteStatus == "In Progress" || deleteStatus == "In progress" || deleteStatus == "in progress")
-		{
-			//delete[] InProgress
-		}
-		
-		else if (deleteStatus == "On Hold" || deleteStatus == "On hold" || deleteStatus == "on hold")
-		{
-			//delete[] OnHold;
-		}
-
-		else if (deleteStatus == "Not Started" || deleteStatus == "No tstarted" || deleteStatus == "not started")
-		{
-			//delete[] NotStarted;
-		}
-	}
 	void writeToText()
 	{
 		//writing TO a text file
+		//NEEDS TO BE COMMA SEPARATED
 		ofstream myFile;
 		myFile.open("ToDo.txt");
 		//myFile << "WRITING THE TO DO LIST HERE IN THIS FILE;
@@ -430,215 +578,380 @@ private:
 		{
 			while (getline(myfile, thisLine))
 			{
-				cout << thisLine << '\n';
+				cout << thisLine << endl;
+				myfile.close();
 			}
-			myfile.close();
-		}
 
-		else
-		{
+			//else
 			cout << "Unable to open file";
-		}
 
+
+		}
 	}
-	void printList()
-	{
-		string printOptions[4] = { "Print all items", "Print by task type", "Print by task priority", 
-		"Print by task ID" };
 
-		int userPrintPick;
-		cout << "Select the number of your print option: (1- Print all items, 2- Print by task type, 3 - Print by task priority, 4 - Print by task ID");
-		cin >> userPrintPick;
 
-		//check input
-
-		//all items
-		if (userPrintPick == 1)
+		void printList()
 		{
-			//print all items in list
-			cout << "Printing all items in list" << endl;
-		}
+			//using get fns from to do item
+			int userPrintPick;
+			cout << "Select the number of your print option: (1- Print all items, 2- Print by task type, 3 - Print by task priority, 4 - Print by task ID)";
+			cin >> userPrintPick;
 
-		//print by type
-		else if (userPrintPick == 2)
-		{
-			//print by task type
-			int userType;
-			cout << "Enter a task type (1- Shopping, 2 -Dishes, 3 -Homework, 4 -Cooking, 5- Laundry, 6 - Pet Care)" << endl;
-			cin >> userType;
+			//check input
 
-			//check user input
-			if (userType == 1)
+			//all items
+			if (userPrintPick == 1)
 			{
-				//print only shopping task items
-				cout << "Printing shopping task items ONLY" << endl << endl;
+				//print all items in list
+				cout << "Printing all items in list" << endl;
+				//fn calls
+				ToDoItem getID();
+				ToDoItem getTitle();
+				ToDoItem getType();
+				ToDoItem getDescription();
+				ToDoItem getStatus();
+				ToDoItem getPriority();
+				ToDoItem getDueDate();
+				ToDoItem getTodaysDate();
+				ToDoItem getModDate();
+
+				for (int i = 0; i < MAX_SIZE; i++)
+				{
+					//cout << myList[i] << endl;
+				}
+
+				/*
+				cout << "ID: " << ID << endl;
+				cout << "Title: " << title << endl;
+				//needs to have string not int - fix later
+				cout << "Type: " << userType << endl;
+				cout << "Task Description: " << description << endl;
+				cout << "Task Priority: " << priority << endl;
+				cout << "Task Status: " << status << endl;
+				cout << "Task Due Date: " << dueDate << endl;
+				cout << "Created On: " << todaysDate << endl;
+				cout << "Last Modified On: " << modDate << endl;
+				*/
 			}
 
-			else if (userType == 2)
+			//print by type
+			else if (userPrintPick == 2)
 			{
-				//print only dishes task items
-				cout << "Printing dishes task items ONLY" << endl << endl;
+				//print by task type - print only one type
+				int type;
+				cout << "Enter a task type (1- Shopping, 2 -Dishes, 3 -Homework, 4 -Cooking, 5- Laundry, 6 - Pet Care)" << endl;
+				cin >> type;
+
+				switch(type){
+
+				//check user input
+				case 1:
+					//print only shopping task items
+					cout << "Printing shopping task items ONLY" << endl << endl;
+					//ToDoItem getType(Shopping);
+
+				case 2:
+					//print only dishes task items
+					cout << "Printing dishes task items ONLY" << endl << endl;
+					//ToDoItem getType(Dishes);
+
+				case 3:
+					//print only homework task items
+					cout << "Printing homework task items ONLY" << endl << endl;
+					//ToDoItem getType(Homework);
+
+				case 4:
+					//print only cooking task items
+					cout << "Printing cooking task items ONLY" << endl << endl;
+					//ToDoItem getType(Cooking);
+
+				case 5:
+					//print only laundry task items
+					cout << "Printing laundry task items ONLY" << endl << endl;
+					//ToDoItem getType(Laundry);
+
+				case 6:
+					//print only pet care task items
+					cout << "Printing pet care task items ONLY" << endl << endl;
+					//ToDoItem getType(PetCare);
+
+				defailt:
+					//invalid input
+					cout << "ERROR- invalid input, try again" << endl;
+					cin >> type;
+				
+				}
+
 			}
 
-			else if (userType == 3)
+			//print by task priority
+			else if (userPrintPick == 3)
 			{
-				//print only homework task items
-				cout << "Printing homework task items ONLY" << endl << endl;
-			}
-
-			else if (userType == 4)
-			{
-				//print only cooking task items
-				cout << "Printing cooking task items ONLY" << endl << endl;
-			}
-
-			else if (userType == 5)
-			{
-				//print only laundry task items
-				cout << "Printing laundry task items ONLY" << endl << endl;
-			}
-
-			else if (userType == 6)
-			{
-				//print only pet care task items
-				cout << "Printing pet care task items ONLY" << endl << endl;
-			}
-
-			else
-			{
-				//invalid input
-				cout << "ERROR- invalid input, try again" << endl;
-				cin >> userType;
-			}
-
-		}
-
-		//print by task priority
-		else if (userPrintPick == 3)
-		{
-			int userPriority;
-			cout << "Enter a Priority Number from 1-5" << endl;
-			cin >> userPriority;
-
-			//test input
-
-			//print highest priority
-			if (userPriority == 1)
-			{
-				//print top priority items ONLY
-				cout << "Printing top priority tasks ONLY" << endl << endl;
-			}
-
-			//high priority ONLY
-			else if (userPriority == 2)
-			{
-				cout << "Printing high priority tasks ONLY" << endl << endl;
-			}
-
-			//medium priority
-			else if (userPriority == 3)
-			{
-				cout << "Printing medium priority tasks ONLY" << endl << endl;
-			}
-
-			//low priority
-			else if (userPriority == 4)
-			{
-				cout << "Printing low priority tasks ONLY" << endl << endl;
-			}
-
-			//lowest priority
-			else if (userPriority == 5)
-			{
-				cout << "Printing lowest priority tasks ONLY" << endl << endl;
-			}
-
-			else
-			{
-				//invalid input
-				cout << "ERROR - invalid input, try again" << endl;
+				//print only items with certain priority - ex only Top priority (1)
+				int userPriority;
+				cout << "Enter a Priority Number from 1-5" << endl;
 				cin >> userPriority;
+
+				//test input
+				switch (userPriority) {
+
+					//print highest priority
+				case 1:
+						//print top priority items ONLY
+						cout << "Printing top priority tasks ONLY" << endl << endl;
+						//ToDoItem getPriority(1);
+
+					//high priority ONLY
+				case 2:
+						cout << "Printing high priority tasks ONLY" << endl << endl;
+						//ToDoItem getPriority(2);
+
+					//medium priority
+				case 3:
+						cout << "Printing medium priority tasks ONLY" << endl << endl;
+						//ToDoItem getPriority(3);
+
+					//low priority
+				case 4:
+						cout << "Printing low priority tasks ONLY" << endl << endl;
+						//ToDoItem getPriority(4);
+
+					//lowest priority
+				case 5:
+						cout << "Printing lowest priority tasks ONLY" << endl << endl;
+						//ToDoItem getPriority(5);
+
+				default:
+						//invalid input
+						cout << "ERROR - invalid input, try again" << endl;
+						cin >> userPriority;
+				}
+			}
+
+			//print ONLY ONE by task ID
+			else if (userPrintPick == 4)
+			{
+				cout << "Enter the ID of the task you would like to print" << endl;
+				cin >> ID;
+
+
+				//unless the id does not exist
+				//then print error statement and second prompt
+				while (ID)
+				{
+					//ToDoItem returnID(ID);
+				}
+				while (!ID)
+				{
+					cout << "Task ID not found in system" << endl;
+					cout << "Try another" << endl;
+					cin >> ID;
+				}
+
+				//somehow print using this info
+			}
+
+		}
+
+		void sortList()
+		{
+			//NEED YOUR ARRAY DESIGNED FIRST BEFORE BEING ABLE TO SORT ANYTHING
+			//sort by different criteria
+			//Sort by Priority, Due date, Create date,Type (with inner sort by Priority or Due Date)
+			cout << "Select a Sorting Option: (1 - By Priority, 2 - By Due Date, 3 - By Create Date, 4 - By Type)" << endl;
+			int sortPick;
+			cin >> sortPick;
+
+			switch (sortPick) {
+
+			case 1:
+				{
+					//sort by priority
+					cout << "Sorting To Do List by Priority" << endl << endl;
+
+					//bubble sort 
+					//for (int i = 0; i < MAX_SIZE - 1; i++)
+						//for (int j = 0; j < MAX_SIZE - i - 1; j++)
+							//if (myList[j] > myList[j + 1])
+							///	swap(myList[j], myList[j + 1]);
+				}
+
+			case 2:
+				{
+					//by due date
+					cout << "Sorting To Do List by Due Date" << endl;
+				}
+
+			case 3:
+				{
+					//by create date
+					cout << "Sorting To Do List by Create Date" << endl;
+				}
+
+			case 4:
+			{
+				//by Type
+				//inner sort by priority or due date
+				cout << "Sorting To Do List by Type" << endl;
+				cout << "Select an Inner Sort (1 - Priority, 2 - Due Date): " << endl;
+				int innerSortPick;
+				cin >> innerSortPick;
+
+				switch (innerSortPick) {
+
+				case 1:
+					{
+						//inner sort by Priority
+						cout << "Inner Sorting by Priority" << endl;
+						//then sort
+					}
+
+				case 2:
+					{
+						//inner sort by due date
+						cout << "Inner Sorting by Due Date" << endl;
+						//then sort
+					}
+
+				default:
+					{
+						//invalid input
+						cout << "ERROR - Invalid input - Try again" << endl;
+						cin >> innerSortPick;
+					}
+				}
+			}
 			}
 		}
 
-		//print by task ID
-		else if (userPrintPick == 4)
+		void mergeList()
 		{
-			int userID;
-			cout << "Enter the ID of the task you would like to print" << endl;
-			cin >> userID;
-
-			//somehow print using this info
-			//unless the id does not exist
-			//then print error statement and second prompt
+			//merge = COMBINE with another array?????
 		}
 
-	}
-	void mergeList()
+		string cloneList(string myList)
+		{
+			//deep copy 
+			 
+			//dyn allocate
+			string *myList2 = new string [MAX_SIZE];
+
+			for (int i = 0; i < MAX_SIZE; i++)
+			{
+				myList2[i] = myList[i];
+			}
+
+			//return cloneList;
+		}
+
+	};
+
+	int main()
 	{
+		int choice = 1;
+		//create user menu
 
+		cout << "Menu: " << endl << endl;
+
+		cout << " 1 - Add to Do" << endl;
+		cout << " 2 - Edit to Do" << endl;
+		cout << " 3 - Delete by task status" << endl;
+		cout << " 4 - Write your list to a file" << endl;
+		cout << " 5 - Read your list from a file" << endl;
+
+		//sort by priority OR due date OR create date OR Type
+		//TYPE inner sort by priority/due date
+		cout << " 6 - Sort your file" << endl;
+
+		//options to print all items, by type, by priority, 1 item by ID
+		cout << " 7 - Print your list" << endl;
+
+		cout << " 8 - Merge list" << endl;
+		cout << " 9 - Clone list" << endl;
+		cout << " 10 - QUIT" << endl;
+		
+		//while choice num is within my menu choices
+		while (choice > 0 && choice < 11)
+		{
+			cout << "Enter the number of an action from the menu" << endl << endl;
+			cin >> choice;
+
+			//print automatically after any changes
+			switch (choice)
+			{
+			case 1:
+				//add to do
+				cout << "Adding New Item:" << endl;
+				//call all setfns for attributes/getUserInfo???
+				//call add function
+				ToDoList addToDo();
+				ToDoList printList();
+				break;
+
+			case 2:
+				//edit to do
+				cout << "Editing Existing Item" << endl;
+				//call edit function
+				ToDoList editToDo();
+				ToDoList printList();
+				break;
+
+			case 3:
+				//delete to do
+				cout << "Deleting Existing Item" << endl;
+				//call delete function
+				//delete one task OR multiple by diff parameters
+				ToDoList deleteToDo();
+				ToDoList printList();
+				break;
+
+			case 4:
+				cout << "Writing To Do List to a File" << endl;
+				//write to file
+				//call write fn
+				ToDoList writeToText();
+				break;
+
+			case 5:
+				cout << "Reading To Do List from a File" << endl;
+				//read from file
+				//call read fn
+				ToDoList readFromText();
+				break;
+
+			case 6:
+				cout << "Sorting To Do List" << endl;
+				//sort file
+				//by diff parameters
+				ToDoList sortList();
+				ToDoList printList();
+				break;
+
+			case 7:
+				cout << "Printing To Do List" << endl;
+				//print list
+				ToDoList printList();
+				break;
+
+			case 8:
+				cout << "Merging To Do List" << endl;
+				//merge list
+				ToDoList mergeList();
+				break;
+
+			case 9:
+				cout << "Cloning To Do List" << endl;
+				//clone list
+				ToDoList cloneList();
+				break;
+			case 10:
+				cout << "EXITING PROGRAM" << endl;
+				return 0;
+
+			case 0:
+				cout << "ERROR - Invalid Input" << endl;
+				cout << "Please enter a different selection" << endl;
+				cin >> choice;
+			}
+		}
 	}
-	void cloneList()
-	{
-
-	}
-
-};
-
-int main()
-{
-	int choice;
-	//create user menu
-	cout << "Enter the number of an action from the menu" << endl << endl;
-	cout << " 1 - Add to Do" << endl;
-	cout << " 2 - Edit to Do" << endl;
-	cout << " 3 - Delete by task status" << endl;
-	cout << " 4 - Write your list to a file" << endl;
-	cout << " 5 - Read your list from a file" << endl;
-
-	//sort by priority OR due date OR create date OR Type
-	//TYPE inner sort by priority/due date
-	cout << " 6 - Sort your file" << endl;
-
-	//options to print all items, by type, by priority, 1 item by ID
-	cout << " 7 - Print your list" << endl;
-
-	cout << " 8 - Merge list" << endl;
-	cout << " 9 - Clone list" << endl;
-
-	cin >> choice;
-	switch (choice)
-	case 1:
-		//add to do
-		//call all setfns for attributes/getUserInfo fn
-		//call add function
-
-	case 2:
-		//edit to do
-		//call edit function
-	case 3:
-		//delete to do
-		//call delete function
-		//delete one task OR multiple by diff parameters
-		//cout << "3 - Delete one task" << endl;
-		//cout << "4 - Delete multiple by type of task" << endl;
-	case 4:
-		//write to file
-		//call write fn
-	case 5:
-		//read from file
-		//call read fn
-	case 6:
-		//sort file
-		//by diff parameters
-	case 7:
-		//print list
-	case 8:
-		//merge list
-	case 9:
-		//clone list
-	
-
-	return 0;
-	
-}
